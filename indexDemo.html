@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>svgmap</title>
+    <style>
+        .stateTip{
+            position:absolute;
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="regionMap" id="RegionMap"></div>
+<script type="text/javascript" src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/raphael-min.js"></script>
+<script type="text/javascript" src="js/res/dongguanMapConfig.js"></script>
+<!-- <script type="text/javascript" src="js/res/chinaMapConfig.js"></script> -->
+<script type="text/javascript" src="js/map.js"></script>
+
+<script type="text/javascript">
+    $('#RegionMap').SVGMap({
+        //external: mapObj_1,
+        mapName: 'dongguan',
+        mapWidth: 600,
+        mapHeight: 500,
+        showTip:true,
+        stateData: {
+ fenggang:{ stateInitColor:1,value:10,index:1},
+ qingxi:{ stateInitColor:5, value: 30, index: 2},
+ tangxia:{ stateInitColor:2, value: 20, index: 3},
+ zhangmutou:{ stateInitColor:3, value: 33, index: 4},
+ xiegang:{ stateInitColor:4, value: 3, index: 5},
+ huangjiang:{ stateInitColor:4, value: 13, index: 6},
+        },
+        stateTipHtml: function (mapData, obj) {
+            var _value = mapData[obj.id].value;
+            var _idx = mapData[obj.id].index;
+            var active = '';
+            _idx < 4 ? active = 'active' : active = '';
+            var tipStr = '<div class="mapInfo"><i class="' + active + '">' + _idx + '</i><span>' + obj.name +
+                '</span><b>' + _value + '</b></div>';
+            return tipStr;
+        }
+    });
+</script>
+</body>
+</html>
