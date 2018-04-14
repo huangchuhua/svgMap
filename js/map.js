@@ -51,7 +51,7 @@
 
             showTip: true,
             stateTipWidth: 100,
-            //stateTipHeight: 50,
+            stateTipHeight: 50,
             stateTipX: 0,
             stateTipY: -10,
             stateTipHtml: function(stateData, obj){

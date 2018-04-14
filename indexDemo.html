@@ -9,6 +9,7 @@
         .stateTip{
             position:absolute;
             border:1px solid #ccc;
+            background-color:gray;
         }
     </style>
 </head>
@@ -21,28 +22,48 @@
 <script type="text/javascript" src="js/map.js"></script>
 
 <script type="text/javascript">
+    var stateData={};
+    var dataObj= dongguanMapConfig.names;
+    /*产生随机数据*/
+    var getValue=function(){
+        return{
+            stateInitColor:Math.ceil(Math.random()*5),
+            value:Math.ceil(Math.random()*50)
+        }
+    }
+    for(var key in dataObj){
+        stateData[key]=dataObj.key;
+        for(var i in stateData){
+            stateData[i]=getValue();
+        }
+    }
+    console.log(stateData, dataObj)
     $('#RegionMap').SVGMap({
         //external: mapObj_1,
         mapName: 'dongguan',
         mapWidth: 600,
         mapHeight: 500,
         showTip:true,
-        stateData: {
- fenggang:{ stateInitColor:1,value:10,index:1},
- qingxi:{ stateInitColor:5, value: 30, index: 2},
- tangxia:{ stateInitColor:2, value: 20, index: 3},
- zhangmutou:{ stateInitColor:3, value: 33, index: 4},
- xiegang:{ stateInitColor:4, value: 3, index: 5},
- huangjiang:{ stateInitColor:4, value: 13, index: 6},
-        },
+//         stateData: {
+//  fenggang:{ stateInitColor:1,value:10,index:1},
+//  qingxi:{ stateInitColor:5, value: 30, index: 2},
+//  tangxia:{ stateInitColor:2, value: 20, index: 3},
+//  zhangmutou:{ stateInitColor:3, value: 33, index: 4},
+//  xiegang:{ stateInitColor:4, value: 3, index: 5},
+//  huangjiang:{ stateInitColor:4, value: 13, index: 6},
+//         },
+        stateData: stateData,
         stateTipHtml: function (mapData, obj) {
             var _value = mapData[obj.id].value;
-            var _idx = mapData[obj.id].index;
+            // var _idx = mapData[obj.id].index;
             var active = '';
-            _idx < 4 ? active = 'active' : active = '';
-            var tipStr = '<div class="mapInfo"><i class="' + active + '">' + _idx + '</i><span>' + obj.name +
+            // _idx < 4 ? active = 'active' : active = '';
+            var tipStr = '<div class="mapInfo"><span>' + obj.name +
                 '</span><b>' + _value + '</b></div>';
             return tipStr;
+            // var tipStr = '<div class="mapInfo"><i class="' + active + '">' + _idx + '</i><span>' + obj.name +
+            //     '</span><b>' + _value + '</b></div>';
+            // return tipStr;
         }
     });
 </script>
