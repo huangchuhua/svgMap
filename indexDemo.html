@@ -8,8 +8,15 @@
     <style>
         .stateTip{
             position:absolute;
-            border:1px solid #ccc;
-            background-color:gray;
+            /* border:1px solid #ccc; */
+            background-color:rgba(0,0,0,0.6);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);/*兼容IE*/
+            color:#fff;
+            padding:5px;
+            border-radius:3px;
+            -webkit-border-radius: 3px; 
+            -moz-border-radius: 3px; 
+            font-size:14px;
         }
     </style>
 </head>
@@ -18,7 +25,6 @@
 <script type="text/javascript" src="js/lib/jquery.js"></script>
 <script type="text/javascript" src="js/lib/raphael-min.js"></script>
 <script type="text/javascript" src="js/res/dongguanMapConfig.js"></script>
-<!-- <script type="text/javascript" src="js/res/chinaMapConfig.js"></script> -->
 <script type="text/javascript" src="js/map.js"></script>
 
 <script type="text/javascript">
@@ -27,7 +33,7 @@
     /*产生随机数据*/
     var getValue=function(){
         return{
-            stateInitColor:Math.ceil(Math.random()*5),
+            stateInitColor:Math.floor(Math.random()*4),
             value:Math.ceil(Math.random()*50)
         }
     }
@@ -37,7 +43,7 @@
             stateData[i]=getValue();
         }
     }
-    console.log(stateData, dataObj)
+    // console.log(stateData, dataObj)
     $('#RegionMap').SVGMap({
         //external: mapObj_1,
         mapName: 'dongguan',
@@ -55,15 +61,10 @@
         stateData: stateData,
         stateTipHtml: function (mapData, obj) {
             var _value = mapData[obj.id].value;
-            // var _idx = mapData[obj.id].index;
             var active = '';
-            // _idx < 4 ? active = 'active' : active = '';
-            var tipStr = '<div class="mapInfo"><span>' + obj.name +
-                '</span><b>' + _value + '</b></div>';
+            var tipStr = '<div class="mapInfo"><span>' + obj.name+'分公司--正常' +
+                '</span><br/>'+'<span>'+'优质率：' + _value + '</span></div>';
             return tipStr;
-            // var tipStr = '<div class="mapInfo"><i class="' + active + '">' + _idx + '</i><span>' + obj.name +
-            //     '</span><b>' + _value + '</b></div>';
-            // return tipStr;
         }
     });
 </script>

@@ -35,7 +35,8 @@
             mapName: 'china',
             mapWidth: 500,
             mapHeight: 400,
-            stateColorList: ['2770B5', '429DD4', '5AABDA', '1C8DFF', '70B3DD', 'C6E1F4', 'EDF2F6'],
+            stateColorList: ['3bcd98', '669ee5', '5483bd', 'f27070'],//数据分段的颜色
+            // stateColorList: ['2770B5', '429DD4', '5AABDA', '1C8DFF', '70B3DD', 'C6E1F4', 'EDF2F6'],
             stateDataAttr: ['stateInitColor', 'stateHoverColor', 'stateSelectedColor', 'baifenbi'],
             stateDataType: 'json',
             stateSettingsXmlPath: '',
@@ -46,12 +47,12 @@
 
             stateInitColor: 'AAD5FF',
             stateHoverColor: 'feb41c',
-            stateSelectedColor: 'E32F02',
+            stateSelectedColor: 'ffff00',//选中的颜色
             stateDisabledColor: 'eeeeee',
 
             showTip: true,
-            stateTipWidth: 100,
-            stateTipHeight: 50,
+            stateTipWidth: 0,//提示框的宽
+            stateTipHeight: 0,//提示框的高
             stateTipX: 0,
             stateTipY: -10,
             stateTipHtml: function(stateData, obj){
@@ -226,7 +227,8 @@
             for (var state in mapConfig.shapes) {
                 var thisStateData = stateData[state],
                     initColor = '#' + (thisStateData && opt.stateColorList[thisStateData.stateInitColor] || opt.stateInitColor),
-                    hoverColor = '#' + (thisStateData && thisStateData.stateHoverColor || opt.stateHoverColor),
+                    hoverColor = '#61ffcc',//悬浮时填充颜色
+                    // hoverColor = '#' + (thisStateData && thisStateData.stateHoverColor || opt.stateHoverColor),
                     selectedColor = '#' + (thisStateData && thisStateData.stateSelectedColor || opt.stateSelectedColor),
                     disabledColor = '#' + (thisStateData && thisStateData.stateDisabledColor || opt.stateDisabledColor);
                 
